@@ -1,0 +1,10 @@
+/app/config/core.php
+/app/config/database.php
+/app/tmp
+/plugins
+/vendors
+/app/webroot/files/videos/*
+.eprj
+.pdf
+*~
+*#*#
