@@ -1,0 +1,1 @@
+<h1><?php echo $this->Html->link('Citizen News', '/');?><?php echo $this->Html->image("../img/icons/video.png", array('alt' => "Citizen News"));?></h1>

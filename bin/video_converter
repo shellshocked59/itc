@@ -1,0 +1,73 @@
+#!/usr/bin/python2
+
+# This should be run as the apache user
+
+import os
+import subprocess
+import time
+
+VIDEO_WEBROOT = '../app/webroot/files/videos/'
+VIDEO_QUEUE = '../app/tmp/video_queue/'
+
+def mp42png(filename):
+    source_filename = filename
+    split_filename = os.path.split(filename)
+    dest_filename = split_filename[0] + '/' + split_filename[1].split('.')[0] + '.png'
+    returncode = subprocess.call(['ffmpeg', '-i', source_filename, '-vframes', '1', dest_filename])   
+
+def any2png(filename):
+    split_filename = os.path.split(filename)
+    returncode = subprocess.call(['mplayer', '-vo', 'png:outdir=' + split_filename[0], '-frames', '1', filename])
+    tmp_filename = split_filename[0] + '/00000001.png'
+    dest_filename = split_filename[0] + '/' + split_filename[1].split('.')[0] + '.png'
+    os.rename(tmp_filename, dest_filename)
+
+def ogv2mp4(filename):
+    source_filename = filename
+    split_filename = os.path.split(filename)
+    dest_filename = split_filename[0] + '/' + split_filename[1].split('.')[0] + '.mp4'
+    returncode = subprocess.call(['HandBrakeCLI', '--preset', '"iPhone & iPod Touch"', '--width', '480', '--vb', '600', '--two-pass', '--turbo', '--input', source_filename, '--output', dest_filename])
+    # TODO: if returncode != 0, email or log errors
+
+def mp42mp4(filename):
+    source_filename = filename
+    split_filename = os.path.split(filename)
+    dest_filename = split_filename[0] + '/tmp' + split_filename[1].split('.')[0] + '.mp4'
+    returncode = subprocess.call(['HandBrakeCLI', '--preset', '"iPhone & iPod Touch"', '--width', '480', '--vb', '600', '--two-pass', '--turbo', '--input', source_filename, '--output', dest_filename])
+    os.unlink(source_filename)
+    os.rename(dest_filename, source_filename)
+    # TODO: if returncode != 0, email or log errors
+
+def ogv2flv(filename):
+    source_filename = filename
+    split_filename = os.path.split(filename)
+    dest_filename = split_filename[0] + '/' + split_filename[1].split('.')[0] + '.flv'
+    returncode = subprocess.call(['ffmpeg', '-i', source_filename, '-ar', '22050', dest_filename])
+    # TODO: if returncode != 0, email or log errors
+
+def mp42ogv(filename):
+    source_filename = filename
+    split_filename = os.path.split(filename)
+    dest_filename = split_filename[0] + '/' + split_filename[1].split('.')[0] + '.ogv'
+    returncode = subprocess.call(['ffmpeg2theora', '--videoquality', '5', '--audioquality', '1', '--max_size', '480x480', source_filename])
+    # TODO: if returncode != 0, email or log errors
+
+while True:
+    for filename in os.listdir(VIDEO_QUEUE):
+        if (os.path.islink(VIDEO_QUEUE + filename)):
+            link_dest = os.path.join(VIDEO_QUEUE, os.readlink(VIDEO_QUEUE + filename))
+            if os.path.samefile(os.path.dirname(link_dest), VIDEO_WEBROOT):
+                # Link points to a valid video path
+                if (os.path.isfile(link_dest)):
+                    file_extension = link_dest.split('.')[-1]
+                    if (file_extension == 'ogv'):
+                        any2png(link_dest)
+                        ogv2mp4(link_dest)
+                        ogv2flv(link_dest)
+                    if (file_extension == 'mp4'):
+                        any2png(link_dest)
+                        mp42ogv(link_dest)
+                        mp42mp4(link_dest)
+                        ogv2flv(link_dest)
+            os.remove(VIDEO_QUEUE + filename)
+    time.sleep(0.1);

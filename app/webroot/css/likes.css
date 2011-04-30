@@ -1,0 +1,59 @@
+div.thumbs_up {
+	float:left;
+	margin-top: 1px;
+}
+
+div.like_text {
+	font-size:75%;
+	text-align:center;
+	margin-left:-2px;
+	line-height:1.3;
+}
+
+div.thumbs_down {
+	float:right;
+	margin-top: 10px;
+}
+
+div.video_description {
+	clear: both;
+}
+
+div.likes {
+	background:#040404 url(../img/icons/like_dislike.png) 0 0 no-repeat;
+	width:94px;
+	height:26px;
+	border: 1px solid #666;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+}
+
+div.dislikes {
+	background:#040404 url(../img/icons/like_dislike.png) 0 -52px no-repeat;
+	width:94px;
+	height:26px;
+	border: 1px solid #666;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+}
+
+div.nolikes {
+	background:#040404 url(../img/icons/like_dislike.png) 0 -26px no-repeat;
+	width:94px;
+	height:26px;
+	border: 1px solid #666;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+}
+
+div.dislike_text {
+	position: absolute;
+	left: 45px;
+	margin-top: 25px;
+	text-align: center;
+	width: 50px;
+}
+/*Additions by Daniel*/
+div.likes {
+	
+}

@@ -1,0 +1,26 @@
+div.video_preview {
+	float: left;
+	margin-right: 2em;
+	margin-bottom: 1em;
+}
+
+div.category_nav {
+	float: left;
+	clear: left;
+	width: 100%;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+div.border_bottom {
+	border-bottom: 1px solid #333333;
+}
+
+div.categories_box {
+	width: 926px;
+}
+
+div.pagination_links {
+	float: left;
+	clear: left;
+}

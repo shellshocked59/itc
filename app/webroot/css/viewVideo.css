@@ -1,0 +1,79 @@
+/*Eric Additions 4-9-11 00:21*/
+/*Video View*/
+
+/*Comments*/
+p.comments_header {
+font-size:1.5em;
+}
+p.comments_add {
+font-size:1em;
+}
+/*span.comments_body affects whole comments loop*/
+span.comments_body {
+font-size:1em;
+}
+p.comments_comment {
+font:inherit;
+margin: 0; 
+padding: 0;
+}
+p.comments_alias {
+font:inherit;
+display:inline;
+}
+a.comments_alias{
+font:inherit;
+display:inline;
+text-decoration:none;
+font-style:italic;
+}
+p.comments_date {
+font:inherit;
+display:inline;
+}
+p.comments_delete {
+font:inherit;
+display:inline;
+}
+/*End Comments*/
+
+/*View VideoView*/
+p.video_uploaded {
+font-size:1em;
+}
+
+
+div.video_description {
+	background-color:#040404;
+
+}
+div#video_right_nav {
+	float:right;
+	width:30%;
+}
+
+/*Social Media*/
+li.social_button{
+	float: left; padding-right: 10px;
+}
+
+
+/*View elements/layout/Nav */
+/* MooTools http://mootools.net/demos/?demo=Fx.Slide */
+h3.section {
+  margin-top: 1em;
+}
+
+#vertical_slide, #horizontal_slide {
+  background: #D0C8C8;
+  color: #8A7575;
+  padding: 10px;
+  border: 5px solid #F3F1F1;
+  font-weight: bold;
+}
+
+div.marginbottom {
+  /* Since the Fx.Slide element resets margins, we set a margin on the above element */
+  margin-bottom: 10px;
+}
+/*END Eric Additions 4-9-11 00:21*/
